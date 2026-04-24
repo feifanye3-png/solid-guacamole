@@ -1,0 +1,631 @@
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>叶菲凡 - 个人简历</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 导航栏样式 */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 20px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: #000;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #000;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .mobile-menu div {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+        
+        /* 个人信息区域 */
+        .hero {
+            display: flex;
+            align-items: center;
+            padding: 60px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .hero-content {
+            flex: 1;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .hero-details {
+            margin-bottom: 15px;
+        }
+        
+        .hero-details p {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .hero-image img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* 通用板块样式 */
+        .section {
+            padding: 60px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section h2::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: #333;
+            bottom: 0;
+            left: 0;
+        }
+        
+        /* 经历卡片样式 */
+        .experience-card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .experience-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .experience-period {
+            color: #666;
+        }
+        
+        .experience-subtitle {
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .experience-content {
+            margin-top: 15px;
+        }
+        
+        .experience-content ul {
+            padding-left: 20px;
+        }
+        
+        .experience-content li {
+            margin-bottom: 8px;
+        }
+        
+        /* 双列布局 */
+        .two-columns {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .column {
+            flex: 1;
+        }
+        
+        /* 荣誉证书样式 */
+        .certificate-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .certificate-item {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .certificate-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* 自我评价样式 */
+        .self-evaluation {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 5px;
+            line-height: 1.8;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            color: #666;
+        }
+        
+        .footer-content {
+            margin-bottom: 20px;
+        }
+        
+        .footer-content p {
+            margin-bottom: 8px;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                right: 0;
+                height: 92vh;
+                top: 8vh;
+                background-color: #fff;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 50%;
+                transform: translateX(100%);
+                transition: transform 0.5s ease-in;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                transform: translateX(0%);
+            }
+            
+            .nav-links li {
+                opacity: 0;
+                margin: 20px 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-image {
+                margin-top: 30px;
+            }
+            
+            .two-columns {
+                flex-direction: column;
+            }
+            
+            .experience-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .experience-period {
+                margin-top: 5px;
+            }
+        }
+        
+        @keyframes navLinkFade {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .toggle .line1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        .toggle .line2 {
+            opacity: 0;
+        }
+        
+        .toggle .line3 {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">叶菲凡</div>
+            <ul class="nav-links">
+                <li><a href="#home">基本信息</a></li>
+                <li><a href="#education">教育经历</a></li>
+                <li><a href="#experience">校外经历</a></li>
+                <li><a href="#campus">校内经历</a></li>
+
+                <li><a href="#skills">个人技能</a></li>
+                <li><a href="#evaluation">自我评价</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 个人信息区域 -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>叶菲凡</h1>
+            <div class="hero-details">
+                <p><strong>性别：</strong>女</p>
+                <p><strong>出生年月：</strong>2002年9月</p>
+                <p><strong>民族：</strong>汉</p>
+                <p><strong>学历：</strong>硕士研究生</p>
+                <p><strong>专业：</strong>国际研究</p>
+                <p><strong>联系方式：</strong>13585707572</p>
+                <p><strong>邮箱：</strong>xiaojizhevip@126.com</p>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/461a9d0f802a4a999faba056379c7927.jpg~tplv-a9rns2rl98-24:720:720.jpg?lk3s=8e244e95&amp;rcl=2026042411245151285DAB951416E0011D&amp;rrcfp=8a172a1a&amp;x-expires=1777605892&amp;x-signature=sG4FLY7opK5EQkvyyY4LubvL1NY%3D" alt="叶菲凡个人照片">
+        </div>
+    </section>
+
+    <!-- 教育经历 -->
+    <section id="education" class="section">
+        <h2>教育经历</h2>
+        <div class="experience-card">
+            <div class="experience-header">
+                <div class="experience-title">香港城市大学</div>
+                <div class="experience-period">2025年9月 - 2026年10月（预计）</div>
+            </div>
+            <div class="experience-subtitle">国际研究 | 硕士学位在读</div>
+            <div class="experience-content">
+                <ul>
+                    <li>主修课程：国际政治经济学、全球治理、国际关系理论</li>
+                    <li>正在进行相关研究项目和论文写作</li>
+                </ul>
+            </div>
+        </div>
+        <div class="experience-card">
+            <div class="experience-header">
+                <div class="experience-title">上海外国语大学</div>
+                <div class="experience-period">2021年9月 - 2025年6月</div>
+            </div>
+            <div class="experience-subtitle">俄语专业 | 学士学位</div>
+            <div class="experience-content">
+                <ul>
+                    <li>主修课程：俄语语言、俄罗斯文学、俄罗斯文化、翻译理论与实践</li>
+                    <li>获得上海外国语大学2024学年第一学期校级奖学金单项奖</li>
+                    <li>2021级学生军训优秀学员</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 校外经历 -->
+    <section id="experience" class="section">
+        <h2>校外经历</h2>
+        <div class="two-columns">
+            <div class="column">
+                <h3 style="margin-bottom: 20px; font-size: 1.4rem;">志愿服务</h3>
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="experience-title">浦东120志愿者服务</div>
+                        <div class="experience-period">2023年1月</div>
+                    </div>
+                    <div class="experience-subtitle">120接线员</div>
+                    <div class="experience-content">
+                        <ul>
+                            <li>投身院前急救疫情防控志愿服务第一线</li>
+                            <li>负责接听紧急救援电话，记录患者信息并协调救援资源</li>
+</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <h3 style="margin-bottom: 20px; font-size: 1.4rem;">校外实习</h3>
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="experience-title">Smart Deer灵鹿聘</div>
+                        <div class="experience-period">2025年10月 - 2026年2月</div>
+                    </div>
+                    <div class="experience-subtitle">出海内容运营</div>
+                    <div class="experience-content">
+                        <ul>
+                            <li>负责小红书账号运营，为市场部开发潜在客户</li>
+                            <li>同期公司小红书账号涨粉最多、数据最好、留资最多</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="experience-title">上海市红十字会造血干细胞捐献者资料库</div>
+                        <div class="experience-period">2024年7月 - 2024年8月</div>
+                    </div>
+                    <div class="experience-subtitle">实习生</div>
+                    <div class="experience-content">
+                        <ul>
+                            <li>协助进行并完成了一例造血干细胞捐献工作</li>
+                            <li>整理和归档捐献者资料，确保信息准确性和完整性</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="experience-title">SMG东方卫视</div>
+                        <div class="experience-period">2024年1月 - 2024年4月</div>
+                    </div>
+                    <div class="experience-subtitle">版权事务部实习生</div>
+                    <div class="experience-content">
+                        <ul>
+                            <li>汇总节目播出情况，参与品牌合作的沟通及项目执行</li>
+                            <li>参与Oatly在电视台内部的新年集市售卖，日销售额破千</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 校内经历 -->
+    <section id="campus" class="section">
+        <h2>校内经历</h2>
+        <div class="experience-card">
+            <div class="experience-header">
+                <div class="experience-title">上海外国语大学院学生会</div>
+                <div class="experience-period">2021年9月 - 2023年6月</div>
+            </div>
+            <div class="experience-subtitle">文体部 | 干事</div>
+            <div class="experience-content">
+                <ul>
+                    <li>组织活动包括戏剧之夜、新生舞会等</li>
+                    <li>负责活动策划、宣传和执行，协调各部门工作</li>
+                </ul>
+            </div>
+        </div>
+        <div class="experience-card">
+            <div class="experience-header">
+                <div class="experience-title">上海外国语大学校学生会</div>
+                <div class="experience-period">2021年9月 - 2022年9月</div>
+            </div>
+            <div class="experience-subtitle">文艺部 | 干事</div>
+            <div class="experience-content">
+                <ul>
+                    <li>参与校大型活动十大歌手的幕后工作</li>
+                    <li>负责活动策划、舞台布置和现场协调</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- 个人技能 -->
+    <section id="skills" class="section">
+        <h2>个人技能</h2>
+        <div class="certificate-list">
+            <div class="certificate-item">
+                <h3>大学英语四六级</h3>
+            </div>
+            <div class="certificate-item">
+                <h3>大学英语专业四级</h3>
+            </div>
+            <div class="certificate-item">
+                <h3>大学英语专业八级</h3>
+            </div>
+            <div class="certificate-item">
+                <h3>雅思7.0 (6.0)</h3>
+            </div>
+            <div class="certificate-item">
+                <h3>俄语专业四级</h3>
+            </div>
+            <div class="certificate-item">
+                <h3>普通话二级甲等</h3>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 自我评价 -->
+    <section id="evaluation" class="section">
+        <h2>自我评价</h2>
+        <div class="self-evaluation">
+            <p>擅长沟通协作，学习能力强，有一定的文字组织和表达能力。具有娴熟的英语表达和写作能力；俄语上具有一定的阅读能力。</p>
+            <p>在校期间积极参与各类学生活动和社会实践，培养了较强的组织协调能力和团队合作精神。在多个实习岗位上表现出色，能够快速适应工作环境并高效完成任务。</p>
+            <p>性格开朗乐观，具有良好的抗压能力和适应能力，能够积极面对挑战。热爱学习，注重自我提升，不断拓展自己的知识面和技能。</p>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <p><strong>姓名：</strong>叶菲凡</p>
+            <p><strong>联系方式：</strong>13585707572</p>
+            <p><strong>邮箱：</strong>xiaojizhevip@126.com</p>
+        </div>
+        <div class="copyright">
+            <p>© 2025 叶菲凡个人简历. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 导航栏切换
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        const navItems = document.querySelectorAll('.nav-links li');
+        
+        mobileMenu.addEventListener('click', () => {
+            // 切换导航栏
+            navLinks.classList.toggle('active');
+            
+            // 动画效果
+            navItems.forEach((item, index) => {
+                if (item.style.animation) {
+                    item.style.animation = '';
+                } else {
+                    item.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+                }
+            });
+            
+            // 汉堡菜单动画
+            mobileMenu.classList.toggle('toggle');
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // 关闭移动菜单
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    mobileMenu.classList.remove('toggle');
+                    navItems.forEach(item => {
+                        item.style.animation = '';
+                    });
+                }
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // 滚动时导航栏高亮
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section');
+            const navItems = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navItems.forEach(item => {
+                item.style.color = '';
+                item.style.fontWeight = '';
+                if (item.getAttribute('href') === `#${current}`) {
+                    item.style.color = '#000';
+                    item.style.fontWeight = 'bold';
+                }
+            });
+        });
+    </script>
+
+</body></html>
